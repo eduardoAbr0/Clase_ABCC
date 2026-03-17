@@ -1,19 +1,21 @@
 'use strict';
 
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
 const conexion = mysql.createConnection({
-    host: 'localhost',
-    user: 'alej',
-    password: '123456',
-    database: 'BD_Express_2026',
-    port:3307
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT || 3306,
+    ssl: { rejectUnauthorized: false } 
 });
 
-conexion.connect(function(err){
-    if(err) 
-        throw err;
-    console.log('Conexion a BD con EXITO!!!');
-
+conexion.connect((err) => {
+    if (err) {
+        console.error('Error al conectar:', err.message);
+        return;
+    }
+    console.log('Conectado a MySQL correctamente');
 });
 module.exports = conexion;
