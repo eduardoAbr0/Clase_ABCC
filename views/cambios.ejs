@@ -83,8 +83,6 @@
 
 
                         <form id="actualizar" method="POST" role="form" enctype="application/x-www-form-urlencoded">
-                          <input type="hidden" name="id" id="id">
-
                           <div class="mb-3">
                             <label for="num_control" class="negrita">Numero de Control:</label>
                             <div>
@@ -189,7 +187,6 @@
           const lista = data;
           lista.forEach((a) => {
             console.log(a);
-            document.getElementById("id").setAttribute('value', a.id);
             document.getElementById("actualizar").action = "alumnos/" + a.id;
             document.getElementById("num_control").setAttribute('value', a.NumControl);
             document.getElementById("nombre").setAttribute('value', a.Nombre);

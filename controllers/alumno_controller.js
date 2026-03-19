@@ -23,7 +23,7 @@ exports.create = function (req, res) {
             Nombre: req.body.nombre,
             Primer_Ap: req.body.primer_ap,
             Segundo_Ap: req.body.segundo_ap,
-            Fecha_Nac: req.body.fecha_nac,
+            FechaNac: req.body.fecha_nac,
             Semestre: req.body.semestre,
             Carrera: req.body.carrera
         }
@@ -54,7 +54,7 @@ exports.delete = function (req, res) {
 
 //----- Modificar alumno -----
 exports.update = function (req, res) {
-    Alumno.findById(req.params.id, function (err, alumno) {
+    Alumno.findById(req.body.num_control, function (err, alumno) {
 
         console.log("actualizar: " + req.body.num_control);
         console.log("actualizar: " + req.body.nombre);
@@ -69,12 +69,12 @@ exports.update = function (req, res) {
             Nombre: req.body.nombre,
             Primer_Ap: req.body.primer_ap,
             Segundo_Ap: req.body.segundo_ap,
-            Fecha_Nac: req.body.fecha_nac,
+            FechaNac: req.body.fecha_nac,
             Semestre: req.body.semestre,
             Carrera: req.body.carrera
         }
 
-        Alumno.update(req.params.id, new Alumno(a), function (err, alumno) {
+        Alumno.update(new Alumno(a), function (err, alumno) {
             req.flash('message', 'Alumno ACTUALIZADO Correctamente !');
             res.redirect('/');
         });

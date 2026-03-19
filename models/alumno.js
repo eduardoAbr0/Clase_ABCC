@@ -4,10 +4,10 @@ const conexion = require('../config/database');
 
 let Alumno = function (alumno) {
     this.NumControl = alumno.Num_Control;
-    this.nombre = alumno.Nombre;
-    this.Primer_ap = alumno.Primer_Ap;
-    this.Segundo_ap = alumno.Segundo_Ap;
-    this.FechaNac = alumno.Fecha_Nac;
+    this.Nombre = alumno.Nombre;
+    this.Primer_Ap = alumno.Primer_Ap;
+    this.Segundo_Ap = alumno.Segundo_Ap;
+    this.FechaNac = alumno.FechaNac;
     this.Semestre = alumno.Semestre;
     this.Carrera = alumno.Carrera;
 };
@@ -41,14 +41,14 @@ Alumno.delete = function (nc, result) {
 };
 
 //----- CAMBIOS 
-Alumno.update = function (id, alumno, result) {
+Alumno.update = function (alumno, result) {
 
     console.log("---------->", alumno);
 
 
     conexion.query("UPDATE alumnos SET Nombre=?, Primer_ap=?, Segundo_ap=?, FechaNac=?, Semestre=?, Carrera=? WHERE NumControl=?",
-        [alumno.nombre, alumno.Primer_Ap, alumno.Segundo_Ap, alumno.Fecha_Nac,
-        alumno.Semestre, alumno.Carrera, alumno.Num_Control], function (err, res) {
+        [alumno.Nombre, alumno.Primer_Ap, alumno.Segundo_Ap, alumno.Fecha_Nac,
+        alumno.Semestre, alumno.Carrera, alumno.NumControl], function (err, res) {
             if (err) {
                 console.log('Error: ', err);
                 result(null, err);
